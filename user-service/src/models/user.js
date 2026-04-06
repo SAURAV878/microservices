@@ -1,0 +1,4 @@
+import { DataTypes } from "sequelize";
+import bcrypt from 'bcrypt';
+import database from '../core/database.js'
+export await 
