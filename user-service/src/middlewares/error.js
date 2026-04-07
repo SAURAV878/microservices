@@ -1,6 +1,14 @@
 import logger from "../utils/logger.js";
 
 const errorHandler = (err, req, res, next) => {
+
+    if(err.name === 'SequelizeUniqueConstraintError') {
+        err.statusCode = 400;
+        err.isOperational= true;
+        err.message= err.errors ? err.errors[0].message : err.message;
+
+    }
+
     err.statusCode = err.statusCode || 500;
     err.status = err.status || 'error';
 
