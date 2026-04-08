@@ -1,13 +1,15 @@
 import express from 'express';
 import { protect } from '../middlewares/auth.js';
 import { deleteUser, getUser, updateUser } from '../controller/user.js';
+import { authLimiter } from '../middlewares/ratelimit.js';
+
 
 const router = express.Router();
 
-router.get('/me', protect, getUser);
+router.get('/', protect, authLimiter, getUser);
 
-router.patch('/update/:id', protect, updateUser);
+router.patch('/:id', protect, authLimiter, updateUser);
 
-router.delete('/delete/:id', protect, deleteUser);
+router.delete('/:id', protect, authLimiter,  deleteUser);
 
 export default router;

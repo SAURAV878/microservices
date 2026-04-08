@@ -17,9 +17,9 @@ app.use(morgan('combined', {
 app.use(express.json());
 
 
-app.use('', singRoute);
-app.use('', loginRoute);
-app.use('', userRoute);
+app.use('/singup', singRoute);
+app.use('/login', loginRoute);
+app.use('/user', userRoute);
 
 
 app.use(errorHandler);

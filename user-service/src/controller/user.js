@@ -17,6 +17,10 @@ export const getUser = catchAsync(async (req, res, next) => {
 });
 
 export const updateUser = catchAsync(async (req, res, next) =>{
+    
+    if(Object.keys(req.body).length ===0) {
+        return next (new AppError('No data provided to update', 400));
+    }
 
     const user = await User.findByPk(req.params.id);
 
